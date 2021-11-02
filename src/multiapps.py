@@ -7,7 +7,7 @@ class MultiApp:
 
     def __init__(self):
         """Initialize a new instance of MultiApp."""
-        self.apps = []
+        self.pages = {}
 
     def add_app(self, title, func):
         """Add a new application.
@@ -17,16 +17,11 @@ class MultiApp:
             func ([type]): title of the app. Appears in the dropdown in the
                            sidebar.
         """
-        self.apps.append({
-            "title": title,
-            "function": func
-        })
+        self.pages[title] = func
 
     def run(self):
         """Run application."""
-        app = st.sidebar.radio(
-            'Go To',
-            self.apps,
-            format_func=lambda app: app['title'])
+        selection = st.sidebar.radio("Go To", list(self.pages.keys()))
 
-        app['function']()
+        app = self.pages[selection]
+        app()

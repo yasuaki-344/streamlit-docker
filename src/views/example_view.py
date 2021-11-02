@@ -1,6 +1,7 @@
 """ビュークラスの実装."""
-from controllers.example_controller import ExampleController
 import streamlit as st
+
+from controllers.example_controller import ExampleController
 
 
 class ExampleView:
@@ -14,7 +15,7 @@ class ExampleView:
         """
         self.__controller = controller
 
-
-def app1():
-    st.title('APP1')
-    st.write('Welcome to app1')
+    def to_view(self):
+        """streamlitで表示するためのページを作成."""
+        st.title('APP1')
+        st.write('Welcome to app1')
