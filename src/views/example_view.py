@@ -17,5 +17,11 @@ class ExampleView:
 
     def to_view(self):
         """streamlitで表示するためのページを作成."""
-        st.title('APP1')
-        st.write('Welcome to app1')
+        st.title("Example view")
+        st.write('Clean architecture based example view')
+        is_pressed = st.button("execute sample process")
+        if is_pressed:
+            self.__controller.get_user_info()
+
+        st.write(self.__controller.user_name)
+        st.write(self.__controller.mail_address)
