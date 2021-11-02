@@ -1,4 +1,7 @@
 {
   "python.linting.pydocstyleEnabled": true,
   "python.linting.pycodestyleEnabled": true,
+  "python.analysis.extraPaths": [
+    "./src"
+  ],
 }
