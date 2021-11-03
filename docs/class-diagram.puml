@@ -1,37 +1,57 @@
 @startuml class-diagram
 class app
-
+note right of app: アプリ起動のために実行するモジュール
 namespace views {
   class ExampleView
   class PlotSampleView
 }
-app ..> views.ExampleView
-app ..> views.PlotSampleView
+note left of views: 画面のデザインを担当
+
+app --> views.ExampleView
+app --> views.PlotSampleView
 
 namespace controllers {
   class ExampleController
   class PlotSampleController
 }
-views.ExampleView ..> controllers.ExampleController
-views.PlotSampleView ..> controllers.PlotSampleController
+note left of controllers: ユースケースへのデータの入力，ユースケースから表示データの取得を担当
+
+views.ExampleView --> controllers.ExampleController
+views.PlotSampleView --> controllers.PlotSampleController
+
+note "ここでのデータのやり取りはViewModelを介して行う" as viewmodel
+views .. viewmodel
+viewmodel .. controllers
 
 namespace use_cases {
   class ExampleInteractor
   class LinearFunctionInteractor
 }
-controllers.ExampleController..> use_cases.ExampleInteractor
-controllers.PlotSampleController..> use_cases.LinearFunctionInteractor
+note left of use_cases: ビジネスユースケースを担当，ソフトウェアで何ができるかを表現する\nビジネスロジックやリポジトリを組み合わせて表現する
+
+controllers.ExampleController --> use_cases.ExampleInteractor
+controllers.PlotSampleController --> use_cases.LinearFunctionInteractor
 
 namespace business_logic {
   class ExampleBusinessLogic
 }
-use_cases.ExampleInteractor ..> business_logic.ExampleBusinessLogic
+note bottom of business_logic: ビジネスロジック, アルゴリズムを表現するオブジェクトが所属
+use_cases.ExampleInteractor --> business_logic.ExampleBusinessLogic
+
+note "複雑なデータはEntityと表現し受け渡しを行う" as enitity
+use_cases .. enitity
+enitity .. business_logic
 
 namespace repositories {
   class ExampleRepository
   class PlotDataRepository
 }
-use_cases.ExampleInteractor ..> repositories.ExampleRepository
-use_cases.LinearFunctionInteractor ..> repositories.PlotDataRepository
+note bottom of repositories: 外部とのデータのやり取り，ユースケースにデータを渡すための加工を担当
+use_cases.ExampleInteractor --> repositories.ExampleRepository
+use_cases.LinearFunctionInteractor --> repositories.PlotDataRepository
+
+note "受け渡しのデータはDTOと表現する" as dto
+use_cases .. dto
+dto .. repositories
 
 @enduml
