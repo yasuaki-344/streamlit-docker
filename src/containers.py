@@ -4,6 +4,7 @@ from dependency_injector import containers, providers
 
 from business_logic.example_business_logic import ExampleBusinessLogic
 from controllers.example_controller import ExampleController
+from controllers.plot_sample_controller import PlotSampleController
 from repositories.example_repository import ExampleRepository
 from use_cases.example_interactor import ExampleInteractor
 from views.example_view import ExampleView
@@ -28,7 +29,10 @@ class Container(containers.DeclarativeContainer):
     # controller の依存性の解決
     example_contoller = providers.Factory(
         ExampleController, use_case=example_use_case)
+    plot_sample_contoller = providers.Factory(
+        PlotSampleController)
 
     # view の依存性の解決
     view1 = providers.Singleton(ExampleView, controller=example_contoller)
-    view2 = providers.Singleton(PlotSampleView)
+    view2 = providers.Singleton(
+        PlotSampleView, controller=plot_sample_contoller)
