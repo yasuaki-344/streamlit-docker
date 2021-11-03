@@ -1,0 +1,37 @@
+@startuml class-diagram
+class app
+
+namespace views {
+  class ExampleView
+  class PlotSampleView
+}
+app ..> views.ExampleView
+app ..> views.PlotSampleView
+
+namespace controllers {
+  class ExampleController
+  class PlotSampleController
+}
+views.ExampleView ..> controllers.ExampleController
+views.PlotSampleView ..> controllers.PlotSampleController
+
+namespace use_cases {
+  class ExampleInteractor
+  class LinearFunctionInteractor
+}
+controllers.ExampleController..> use_cases.ExampleInteractor
+controllers.PlotSampleController..> use_cases.LinearFunctionInteractor
+
+namespace business_logic {
+  class ExampleBusinessLogic
+}
+use_cases.ExampleInteractor ..> business_logic.ExampleBusinessLogic
+
+namespace repositories {
+  class ExampleRepository
+  class PlotDataRepository
+}
+use_cases.ExampleInteractor ..> repositories.ExampleRepository
+use_cases.LinearFunctionInteractor ..> repositories.PlotDataRepository
+
+@enduml
