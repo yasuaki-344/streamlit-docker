@@ -1,5 +1,5 @@
 """データアクセスオブジェクトのサンプル."""
-from entities.example_data_class import ExampleDataClass
+from dto.example_data_class import ExampleDataClass
 
 
 class ExampleRepository:

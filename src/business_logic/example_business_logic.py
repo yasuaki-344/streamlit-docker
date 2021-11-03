@@ -1,5 +1,4 @@
 """データアクセスオブジェクトのサンプル."""
-from entities.example_data_class import ExampleDataClass
 
 
 class ExampleBusinessLogic:

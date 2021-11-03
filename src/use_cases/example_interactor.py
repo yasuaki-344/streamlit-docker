@@ -1,7 +1,7 @@
 """ユースケース実装の一例."""
 
 from business_logic.example_business_logic import ExampleBusinessLogic
-from entities.example_data_class import ExampleDataClass
+from dto.example_data_class import ExampleDataClass
 from repositories.example_repository import ExampleRepository
 
 
