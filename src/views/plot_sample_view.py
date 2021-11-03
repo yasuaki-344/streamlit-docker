@@ -1,7 +1,5 @@
 """複数ページ検証用に用意した簡易的なビュークラス."""
 import streamlit as st
-import pandas as pd
-import numpy as np
 
 from controllers.plot_sample_controller import PlotSampleController
 
@@ -30,11 +28,5 @@ class PlotSampleView:
 
         st.subheader('Line Chart')
         if is_pressed:
-            self.__controller.create_plot_data()
-            data = {
-                'x': np.random.random(20),
-                'y': np.random.random(20) - 0.5,
-                'z': np.random.random(20) - 1.0,
-            }
-            df = pd.DataFrame(data).set_index('x')
+            df = self.__controller.create_plot_data()
             st.line_chart(df)
