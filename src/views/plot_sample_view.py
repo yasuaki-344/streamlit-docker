@@ -2,7 +2,7 @@
 import streamlit as st
 
 
-class AnotherView:
+class PlotSampleView:
     """単純なビュークラス."""
 
     def to_view(self):

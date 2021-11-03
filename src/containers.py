@@ -6,8 +6,8 @@ from business_logic.example_business_logic import ExampleBusinessLogic
 from controllers.example_controller import ExampleController
 from repositories.example_repository import ExampleRepository
 from use_cases.example_interactor import ExampleInteractor
-from views.another_view import AnotherView
 from views.example_view import ExampleView
+from views.plot_sample_view import PlotSampleView
 
 
 class Container(containers.DeclarativeContainer):
@@ -31,4 +31,4 @@ class Container(containers.DeclarativeContainer):
 
     # view の依存性の解決
     view1 = providers.Singleton(ExampleView, controller=example_contoller)
-    view2 = providers.Singleton(AnotherView)
+    view2 = providers.Singleton(PlotSampleView)

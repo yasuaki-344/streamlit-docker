@@ -4,13 +4,13 @@ from dependency_injector.wiring import Provide, inject
 
 from containers import Container
 from multiapps import MultiApp
-from views.another_view import AnotherView
 from views.example_view import ExampleView
+from views.plot_sample_view import PlotSampleView
 
 
 @inject
 def main(app1: ExampleView = Provide[Container.view1],
-         app2: AnotherView = Provide[Container.view2]):
+         app2: PlotSampleView = Provide[Container.view2]):
     """Set up and run application."""
     app = MultiApp()
     # ここでページの追加を行う.
