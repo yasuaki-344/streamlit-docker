@@ -1,16 +1,17 @@
 """ユースケース実装の一例."""
+from typing import Dict
 
 import numpy as np
-from typing import Dict
+
+from repositories.plot_data_repository import PlotDataRepository
 
 
 class LinearFunctionInteractor:
     """一次関数データの作成."""
 
-    def __init__(self):
-        """ユースケースコンストラクタの一例.
-        """
-        pass
+    def __init__(self, repository: PlotDataRepository):
+        """ユースケースコンストラクタの一例."""
+        self.__repository = repository
 
     def create_data(self, gradient: float, intercept: float
                     ) -> Dict[str, np.array]:
@@ -23,7 +24,7 @@ class LinearFunctionInteractor:
         Returns:
             [type]: [description]
         """
-        x_data = np.random.random(20)
+        x_data = self.__repository.generate_data()
         data = {
             'x': x_data,
             'y': gradient * x_data + intercept

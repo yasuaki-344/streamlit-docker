@@ -6,6 +6,7 @@ from business_logic.example_business_logic import ExampleBusinessLogic
 from controllers.example_controller import ExampleController
 from controllers.plot_sample_controller import PlotSampleController
 from repositories.example_repository import ExampleRepository
+from repositories.plot_data_repository import PlotDataRepository
 from use_cases.example_interactor import ExampleInteractor
 from use_cases.linear_function_interactor import LinearFunctionInteractor
 from views.example_view import ExampleView
@@ -17,15 +18,19 @@ class Container(containers.DeclarativeContainer):
 
     # repository の依存性の解決
     example_repository = providers.Singleton(ExampleRepository)
+    plot_data_repository = providers.Singleton(PlotDataRepository)
 
     # business logic の依存性の解決
     example_business_logic = providers.Factory(ExampleBusinessLogic)
+
     # use case の依存性の解決
     example_use_case = providers.Factory(
         ExampleInteractor,
         logic=example_business_logic,
         repository=example_repository)
-    linear_function_interactor = providers.Factory(LinearFunctionInteractor)
+    linear_function_interactor = providers.Factory(
+        LinearFunctionInteractor,
+        repository=plot_data_repository)
 
     # controller の依存性の解決
     example_contoller = providers.Factory(
