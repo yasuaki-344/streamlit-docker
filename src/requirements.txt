@@ -1,2 +1,4 @@
 streamlit
 dependency-injector
+numpy
+pandas
